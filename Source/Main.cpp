@@ -103,8 +103,10 @@ int main(void)
 
 	// ---------------------------------------------------------------------------------------------------------
 
+	bool PrevFrameKeyState = false;
+
 	while (bShouldRun)
-	{
+	{		
 		// Next frame we exit
 		if (GetAsyncKeyState(VK_ESCAPE) & 0x8000)
 		{
@@ -113,13 +115,14 @@ int main(void)
 	
 		// Play the fucking sound already!
 		// Iv'e been reading this shit for too long!
-		if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+		if ((GetAsyncKeyState(VK_SPACE) & 0x8000) != 0 && !PrevFrameKeyState)
 		{
 			pSourceVoice->Stop(0);
 			pSourceVoice->FlushSourceBuffers();
 			pSourceVoice->SubmitSourceBuffer(&BufferDesc);
 			pSourceVoice->Start(0);
 		}
+		PrevFrameKeyState = (GetAsyncKeyState(VK_SPACE) & 0x8000) != 0;
 
 		// We don't wanna drain the CPU, so sleep a bit
 		Sleep(16);
