@@ -1,0 +1,1 @@
+cl /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include" Source/Main.cpp Ole32.lib User32.lib && Main.exe

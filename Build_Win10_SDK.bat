@@ -1,0 +1,1 @@
+cl Source/Main.cpp Ole32.lib User32.lib && Main.exe
